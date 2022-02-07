@@ -67,7 +67,7 @@ body {
     background-color: var(--correct-color);
   }
 }
-.title {
+.tile {
   color: white;
   font-size: 2em;
   font-weight: bold;
@@ -99,14 +99,29 @@ body {
     border-radius: 0.25em;
     cursor: pointer;
     user-select: none;
+  }
+  .key-enter,
+  .key-exit {
+    grid-column: span 3;
+    font-size: inherit;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--key-color);
+    color: white;
+    fill: white;
+    text-transform: uppercase;
+    border-radius: 0.25em;
+    cursor: pointer;
+    user-select: none;
 
     & > svg {
       width: 1.5em;
       height: 1.5em;
+      pointer-events: none;
     }
-  }
-  .key.large {
-    grid-column: span 3;
   }
   .absent {
     background-color: var(--absent-color);

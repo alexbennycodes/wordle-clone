@@ -6,40 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WORDLE</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="heading">WORDLE</div>
     <div class="guess-grid">
-      <div class="title correct">T</div>
-      <div class="title absent">H</div>
-      <div class="title present">O</div>
-      <div class="title">S</div>
-      <div class="title">E</div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
-      <div class="title"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
     </div>
     <div class="keyboard">
       <button class="key correct" id="Q">Q</button>
@@ -63,7 +64,7 @@
       <button class="key" id="K">K</button>
       <button class="key" id="L">L</button>
       <div class="space"></div>
-      <button class="key large" id="enter">ENTER</button>
+      <button class="key-enter" id="enter">ENTER</button>
       <button class="key" id="Z">Z</button>
       <button class="key" id="X">X</button>
       <button class="key" id="C">C</button>
@@ -71,7 +72,7 @@
       <button class="key" id="B">B</button>
       <button class="key" id="N">N</button>
       <button class="key" id="M">M</button>
-      <button class="key large" id="delete">
+      <button class="key-exit" id="delete">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"

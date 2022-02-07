@@ -93,7 +93,7 @@ body {
   background-color: var(--correct-color);
 }
 
-.title {
+.tile {
   color: white;
   font-size: 2em;
   font-weight: bold;
@@ -147,13 +147,38 @@ body {
           user-select: none;
 }
 
-.keyboard .key > svg {
-  width: 1.5em;
-  height: 1.5em;
+.keyboard .key-enter,
+.keyboard .key-exit {
+  grid-column: span 3;
+  font-size: inherit;
+  border: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--key-color);
+  color: white;
+  fill: white;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
-.keyboard .key.large {
-  grid-column: span 3;
+.keyboard .key-enter > svg,
+.keyboard .key-exit > svg {
+  width: 1.5em;
+  height: 1.5em;
+  pointer-events: none;
 }
 
 .keyboard .absent {
