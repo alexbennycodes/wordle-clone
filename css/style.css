@@ -1,0 +1,170 @@
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+:root {
+  --bg-color: #121213;
+  --key-color: #818384;
+  --absent-color: #3a3a3c;
+  --present-color: #b59f3b;
+  --correct-color: #538d4e;
+}
+
+body {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 2rem 2rem 2rem;
+  font-size: clamp(0.5rem, 2.5vmin, 1.25rem);
+}
+
+.heading {
+  color: white;
+  font-weight: bolder;
+  font-size: 36px;
+  letter-spacing: 0.5rem;
+  width: 50%;
+  min-width: 450px;
+  text-align: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px grey solid;
+  margin-bottom: 2rem;
+}
+
+.guess-grid {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-grid-columns: (4em)[5];
+      grid-template-columns: repeat(5, 4em);
+  -ms-grid-rows: (4em)[6];
+      grid-template-rows: repeat(6, 4em);
+  gap: 0.25em;
+  margin-bottom: 1em;
+}
+
+.guess-grid .title {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0.05em solid #404040;
+}
+
+.guess-grid .absent {
+  background-color: var(--absent-color);
+}
+
+.guess-grid .present {
+  background-color: var(--present-color);
+}
+
+.guess-grid .correct {
+  background-color: var(--correct-color);
+}
+
+.title {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0.05em solid #404040;
+}
+
+.keyboard {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(auto, 1.25em))[20];
+      grid-template-columns: repeat(20, minmax(auto, 1.25em));
+  grid-auto-rows: 3em;
+  gap: 0.35em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.keyboard .key {
+  grid-column: span 2;
+  font-size: inherit;
+  border: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--key-color);
+  color: white;
+  fill: white;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.keyboard .key > svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.keyboard .key.large {
+  grid-column: span 3;
+}
+
+.keyboard .absent {
+  background-color: var(--absent-color);
+}
+
+.keyboard .present {
+  background-color: var(--present-color);
+}
+
+.keyboard .correct {
+  background-color: var(--correct-color);
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,120 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+:root {
+  --bg-color: #121213;
+  --key-color: #818384;
+  --absent-color: #3a3a3c;
+  --present-color: #b59f3b;
+  --correct-color: #538d4e;
+}
+
+body {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem 2rem 2rem;
+  font-size: clamp(0.5rem, 2.5vmin, 1.25rem);
+}
+
+.heading {
+  color: white;
+  font-weight: bolder;
+  font-size: 36px;
+  letter-spacing: 0.5rem;
+  width: 50%;
+  min-width: 450px;
+  text-align: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px grey solid;
+  margin-bottom: 2rem;
+}
+
+.guess-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  //   flex-grow: 1;
+  grid-template-columns: repeat(5, 4em);
+  grid-template-rows: repeat(6, 4em);
+  gap: 0.25em;
+  margin-bottom: 1em;
+  .title {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.05em solid hsl(0, 0%, 25%);
+  }
+  .absent {
+    background-color: var(--absent-color);
+  }
+  .present {
+    background-color: var(--present-color);
+  }
+  .correct {
+    background-color: var(--correct-color);
+  }
+}
+.title {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.05em solid hsl(0, 0%, 25%);
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(auto, 1.25em));
+  grid-auto-rows: 3em;
+  gap: 0.35em;
+  justify-content: center;
+
+  .key {
+    grid-column: span 2;
+    font-size: inherit;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--key-color);
+    color: white;
+    fill: white;
+    text-transform: uppercase;
+    border-radius: 0.25em;
+    cursor: pointer;
+    user-select: none;
+
+    & > svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+  .key.large {
+    grid-column: span 3;
+  }
+  .absent {
+    background-color: var(--absent-color);
+  }
+  .present {
+    background-color: var(--present-color);
+  }
+  .correct {
+    background-color: var(--correct-color);
+  }
+}
