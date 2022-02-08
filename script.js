@@ -52,9 +52,11 @@ function submitGuess() {
   console.log(userInput);
   for (let i = 0; i < userInput.length; i++) {
     if (word.includes(userInput[i])) {
-      console.log("try agian", i);
-      console.log(Active[i]);
+      // console.log("try agian", i);
+      // console.log(Active[i]);
       Active[i].classList.add("present");
+    } else {
+      Active[i].classList.add("absent");
     }
   }
   for (let i = 0; i < userInput.length; i++) {

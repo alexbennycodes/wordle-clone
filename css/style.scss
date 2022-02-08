@@ -48,7 +48,7 @@ body {
   //   flex-grow: 1;
   grid-template-columns: repeat(5, 4.5em);
   grid-template-rows: repeat(6, 4.5em);
-  gap: 0.25em;
+  gap: 0.5em;
   margin-bottom: 1em;
   .title {
     color: white;
@@ -61,12 +61,15 @@ body {
   }
   .absent {
     background-color: var(--absent-color);
+    border: none;
   }
   .present {
     background-color: var(--present-color);
+    border: none;
   }
   .correct {
     background-color: var(--correct-color);
+    border: none;
   }
 }
 

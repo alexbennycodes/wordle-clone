@@ -62,7 +62,7 @@ body {
       grid-template-columns: repeat(5, 4.5em);
   -ms-grid-rows: (4.5em)[6];
       grid-template-rows: repeat(6, 4.5em);
-  gap: 0.25em;
+  gap: 0.5em;
   margin-bottom: 1em;
 }
 
@@ -84,14 +84,17 @@ body {
 
 .guess-grid .absent {
   background-color: var(--absent-color);
+  border: none;
 }
 
 .guess-grid .present {
   background-color: var(--present-color);
+  border: none;
 }
 
 .guess-grid .correct {
   background-color: var(--correct-color);
+  border: none;
 }
 
 .tile {
