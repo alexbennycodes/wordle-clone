@@ -17,6 +17,7 @@
 }
 
 body {
+  position: relative;
   background-color: var(--bg-color);
   min-height: 100vh;
   display: -webkit-box;
@@ -191,5 +192,113 @@ body {
 
 .keyboard .correct {
   background-color: var(--correct-color);
+}
+
+.lost {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000a3;
+  opacity: 0;
+}
+
+.lost .text {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.lost .text h1 {
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  font-size: 2rem;
+}
+
+.lost .text .try-again {
+  border: none;
+  font-weight: bold;
+  font-size: 1.25em;
+  padding: 1em 2rem;
+  background-color: var(--key-color);
+  color: white;
+  fill: white;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.win {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000a3;
+  opacity: 0;
+}
+
+.win .text {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.win .text h1 {
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  font-size: 2rem;
+}
+
+.win .text .try-again {
+  border: none;
+  font-weight: bold;
+  font-size: 1.25em;
+  padding: 1em 2rem;
+  background-color: var(--key-color);
+  color: white;
+  fill: white;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 /*# sourceMappingURL=style.css.map */
