@@ -20,10 +20,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem 2rem 2rem 2rem;
   font-size: clamp(0.5rem, 2.5vmin, 1.25rem);
+  overflow: hidden;
 }
 
 .heading {
@@ -44,8 +45,8 @@ body {
   justify-content: center;
   align-content: center;
   //   flex-grow: 1;
-  grid-template-columns: repeat(5, 4em);
-  grid-template-rows: repeat(6, 4em);
+  grid-template-columns: repeat(5, 4.5em);
+  grid-template-rows: repeat(6, 4.5em);
   gap: 0.25em;
   margin-bottom: 1em;
   .title {
@@ -81,14 +82,14 @@ body {
   display: grid;
   grid-template-columns: repeat(20, minmax(auto, 1.25em));
   grid-auto-rows: 3em;
-  gap: 0.35em;
+  gap: 0.5em;
   justify-content: center;
 
   .key {
     grid-column: span 2;
     font-size: inherit;
     border: none;
-    padding: 0;
+    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,7 +106,7 @@ body {
     grid-column: span 3;
     font-size: inherit;
     border: none;
-    padding: 0;
+    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
