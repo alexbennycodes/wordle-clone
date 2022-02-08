@@ -2,6 +2,9 @@
 
 const word = "apple";
 const WORD_LENGTH = 5;
+let userInput = "";
+const dictWords = ["apple", "mango"];
+let attempts = 0;
 
 function getActiveTiles() {
   const containsActive = document.querySelectorAll(".active");
@@ -11,19 +14,60 @@ function getActiveTiles() {
 function pressKey(letter) {
   const activeTiles = getActiveTiles();
   if (activeTiles >= WORD_LENGTH) return;
-  const notActive = document.querySelector(".tile:not(.active)");
+  const notActive = document.querySelector(".tile:not(.used)");
   notActive.innerHTML = letter.toUpperCase();
   notActive.classList.add("active");
+  notActive.classList.add("used");
+  userInput = userInput.concat(letter);
+  return;
 }
 
 function deleteKey() {
   const activeTiles = getActiveTiles();
   if (activeTiles === 0) return;
-  console.log(activeTiles);
   const notActive = document.querySelectorAll(".active");
-  console.log(notActive[notActive.length - 1]);
   notActive[notActive.length - 1].innerHTML = "";
   notActive[notActive.length - 1].classList.remove("active");
+  notActive[notActive.length - 1].classList.remove("used");
+  userInput = userInput.slice(0, -1);
+  return;
+}
+
+function submitGuess() {
+  const activeTiles = getActiveTiles();
+  if (activeTiles !== 5) return;
+  attempts++;
+  // console.log(attempts);
+  const Active = document.querySelectorAll(".active");
+  if (userInput === word) {
+    // console.log("u win");
+    for (let elements of Active) {
+      elements.classList.add("correct");
+    }
+    // printWinner();
+    removeInteraction();
+    return;
+  }
+  // console.log(Active);
+  console.log(userInput);
+  for (let i = 0; i < userInput.length; i++) {
+    if (word.includes(userInput[i])) {
+      console.log("try agian", i);
+      console.log(Active[i]);
+      Active[i].classList.add("present");
+    }
+  }
+  for (let i = 0; i < userInput.length; i++) {
+    if (word[i] === userInput[i]) {
+      // console.log("try agian", i);
+      Active[i].classList.add("correct");
+    }
+  }
+  for (let element of Active) {
+    element.classList.remove("active");
+  }
+  userInput = "";
+  return;
 }
 
 // function handleMouseClick(e) {
@@ -43,11 +87,11 @@ function deleteKey() {
 // }
 
 function handleKeyPress(e) {
-  console.log(e);
-  //   if (e.key === "Enter") {
-  //     submitGuess();
-  //     return;
-  //   }
+  // console.log(e);
+  if (e.key === "Enter") {
+    submitGuess();
+    return;
+  }
 
   if (e.key === "Backspace" || e.key === "Delete") {
     deleteKey();
@@ -62,6 +106,7 @@ function handleKeyPress(e) {
 function startInteraction() {
   //   document.addEventListener("click", handleMouseClick);
   document.addEventListener("keydown", handleKeyPress);
+  return;
 }
 
 function removeInteraction() {
@@ -69,4 +114,14 @@ function removeInteraction() {
   document.removeEventListener("keydown", handleKeyPress);
 }
 
-startInteraction();
+function playGame() {
+  if (attempts < 7) {
+    startInteraction();
+  } else {
+    removeInteraction();
+    console.log("you lost");
+    return;
+  }
+}
+
+playGame();
