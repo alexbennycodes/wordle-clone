@@ -35,7 +35,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 1rem 0;
-  font-size: clamp(0.5rem, 2.5vmin, 1.25rem);
+  font-size: clamp(0.7rem, 2.5vmin, 1.25rem);
   overflow: hidden;
 }
 
@@ -117,10 +117,10 @@ body {
 .keyboard {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(auto, 1.35em))[20];
-      grid-template-columns: repeat(20, minmax(auto, 1.35em));
-  grid-auto-rows: 3em;
-  gap: 0.5em;
+  -ms-grid-columns: (minmax(auto, 1.15em))[20];
+      grid-template-columns: repeat(20, minmax(auto, 1.15em));
+  grid-auto-rows: 3.25em;
+  gap: 0.35em;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -204,11 +204,9 @@ body {
   z-index: 1;
   height: 100vh;
   width: 100vw;
-  background-color: #000000a3;
+  background-color: #000000dc;
   opacity: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -258,6 +256,12 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.lost.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .win {

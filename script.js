@@ -7,7 +7,7 @@ const word = "apple";
 const WORD_LENGTH = 5;
 let userInput = "";
 const dictWords = ["apple", "mango"];
-let attempts = 0;
+let attempts = 1;
 
 function getActiveTiles() {
   const containsActive = document.querySelectorAll(".active");
@@ -93,17 +93,23 @@ function submitGuess() {
 
 function handleKeyPress(e) {
   // console.log(e);
-  if (e.key === "Enter") {
-    submitGuess();
-    return;
-  }
+  if (attempts < 7) {
+    console.log(attempts);
+    if (e.key === "Enter") {
+      submitGuess();
+      return;
+    }
 
-  if (e.key === "Backspace" || e.key === "Delete") {
-    deleteKey();
-    return;
-  }
-  if (e.key.match(/^[a-z]$/)) {
-    pressKey(e.key);
+    if (e.key === "Backspace" || e.key === "Delete") {
+      deleteKey();
+      return;
+    }
+    if (e.key.match(/^[a-z]$/)) {
+      pressKey(e.key);
+      return;
+    }
+  } else {
+    document.querySelector(".lost").classList.add("show");
     return;
   }
 }
@@ -117,15 +123,16 @@ function startInteraction() {
 function removeInteraction() {
   document.removeEventListener("click", handleMouseClick);
   document.removeEventListener("keydown", handleKeyPress);
+  return;
 }
 
 function playGame() {
-
   if (attempts < 7) {
     startInteraction();
+    console.log("overw12");
   } else {
-    removeInteraction();
     console.log("you lost");
+    removeInteraction();
     return;
   }
 }
