@@ -1,4 +1,7 @@
-"use strict";
+import * as targetArr from "./targetWords.js";
+import * as dictArr from "./dictWords.js";
+
+("use strict");
 
 const word = "apple";
 const WORD_LENGTH = 5;
@@ -117,6 +120,7 @@ function removeInteraction() {
 }
 
 function playGame() {
+
   if (attempts < 7) {
     startInteraction();
   } else {
