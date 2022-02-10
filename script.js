@@ -1,7 +1,4 @@
-import * as targetArr from "./targetWords.js";
-import * as dictArr from "./dictWords.js";
-
-("use strict");
+"use strict";
 
 const word = "apple";
 const WORD_LENGTH = 5;
