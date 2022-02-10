@@ -1,6 +1,8 @@
-"use strict";
+import { targetWords } from "./targetWords.js";
 
-const word = "apple";
+("use strict");
+let randomNumber = Math.floor(Math.random() * targetWords.length);
+let word = targetWords[randomNumber];
 const WORD_LENGTH = 5;
 let userInput = "";
 let attempts = 1;
@@ -30,18 +32,14 @@ function submitGuess() {
   const activeTiles = getActiveTiles();
   if (activeTiles.length !== WORD_LENGTH) return;
   attempts++;
-  // console.log(attempts);
   if (userInput === word) {
-    // console.log("u win");
     for (let elements of activeTiles) {
       elements.classList.add("correct");
     }
     removeInteraction();
     showEndScreen("IMPRESSIVE");
-    // printWinner();
     return;
   }
-  console.log(userInput);
   for (let i = 0; i < userInput.length; i++) {
     if (word.includes(userInput[i])) {
       activeTiles[i].classList.add("present");
@@ -52,6 +50,10 @@ function submitGuess() {
       activeTiles[i].classList.add("absent");
     }
     activeTiles[i].classList.remove("active");
+  }
+  if (attempts > 6) {
+    removeInteraction();
+    showEndScreen(`YOU LOST. THE WORD IS ${word.toUpperCase()}.`);
   }
   userInput = "";
   return;
@@ -69,12 +71,6 @@ function deleteKey() {
 }
 
 function keyPress(e) {
-  if (attempts > 6) {
-    removeInteraction();
-    showEndScreen("BETTER LUCK NEXT TIME");
-    return;
-  }
-  console.log(e.key);
   if (e.key === "Enter") {
     submitGuess();
     return;
@@ -88,13 +84,7 @@ function keyPress(e) {
 }
 
 function mouseClick(e) {
-  if (attempts > 6) {
-    removeInteraction();
-    showEndScreen("BETTER LUCK NEXT TIME");
-    return;
-  }
   let keyValue = e.target.id.toUpperCase();
-  console.log(keyValue);
   if (keyValue === "ENTER") {
     submitGuess();
     return;
@@ -113,7 +103,7 @@ function startInteraction() {
 }
 
 function removeInteraction() {
-  //   document.removeEventListener("click", handleMouseClick);
+  document.removeEventListener("click", mouseClick);
   document.removeEventListener("keydown", keyPress);
   return;
 }
@@ -123,6 +113,8 @@ startInteraction();
 function init() {
   userInput = "";
   attempts = 1;
+  randomNumber = Math.floor(Math.random() * targetWords.length);
+  word = targetWords[randomNumber];
   document.querySelector(".endscreen").classList.remove("show");
   const tiles = document.querySelectorAll(".tile");
   for (let element of tiles) {
