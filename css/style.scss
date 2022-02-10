@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -16,216 +16,128 @@
 }
 
 body {
-  position: relative;
   background-color: var(--bg-color);
+  font-size: clamp(0.7em, 2.5vw, 1.25em);
   height: 100vh;
-  width: 100%;
+  position: absolute;
+}
+
+.container {
+  padding: 1rem 0 2rem 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
-  font-size: clamp(0.7rem, 2.5vmin, 1.25rem);
-  overflow: hidden;
-}
 
-.heading {
-  color: white;
-  font-weight: bolder;
-  font-size: 3em;
-  letter-spacing: 0.5rem;
-  width: 100%;
-  // min-width: 450px;
-  text-align: center;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px grey solid;
-  margin-bottom: 1rem;
-}
-
-.guess-grid {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  //   flex-grow: 1;
-  grid-template-columns: repeat(5, 4em);
-  grid-template-rows: repeat(6, 4em);
-  gap: 0.5em;
-  margin-bottom: 1em;
-  .title {
+  header {
     color: white;
-    font-size: 2em;
+    font-size: 3em;
+    letter-spacing: 0.1em;
     font-weight: bold;
-    display: flex;
+    width: 100vw;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 0.1rem solid rgb(136, 136, 136);
+  }
+
+  .grid-box {
+    display: grid;
+    grid-template-columns: repeat(5, 4em);
+    grid-template-rows: repeat(6, 4em);
+    gap: 0.5em;
+    color: white;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    .tile {
+      border: 0.05em solid hsl(0, 0%, 25%);
+      font-size: 2.5em;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .keyboard {
+    display: grid;
+    grid-template-columns: repeat(20, minmax(auto, 1.15em));
+    grid-auto-rows: 3.5em;
+    gap: 0.35em;
     justify-content: center;
-    align-items: center;
-    border: 0.05em solid hsl(0, 0%, 25%);
+    padding-bottom: 2rem;
+
+    .key {
+      grid-column: span 2;
+      background-color: var(--key-color);
+      border: none;
+      border-radius: 0.25em;
+      color: white;
+      fill: white;
+      font-weight: bolder;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+    }
+    .key-enter,
+    .key-exit {
+      grid-column: span 3;
+    }
   }
-  .absent {
-    background-color: var(--absent-color);
-    border: none;
-  }
-  .present {
-    background-color: var(--present-color);
-    border: none;
-  }
-  .correct {
-    background-color: var(--correct-color);
-    border: none;
+
+  .grid-box,
+  .keyboard {
+    .absent {
+      background-color: var(--absent-color);
+      border: none;
+    }
+    .present {
+      background-color: var(--present-color);
+      border: none;
+    }
+    .correct {
+      background-color: var(--correct-color);
+      border: none;
+    }
   }
 }
 
-.tile {
-  color: white;
-  font-size: 2em;
-  font-weight: bold;
-  display: flex;
+.endscreen {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  display: none;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 0.05em solid hsl(0, 0%, 25%);
-}
+  background-color: rgba(0, 0, 0, 0.755);
+  color: white;
+  text-align: center;
 
-.keyboard {
-  display: grid;
-  grid-template-columns: repeat(20, minmax(auto, 1.15em));
-  grid-auto-rows: 3.25em;
-  gap: 0.35em;
-  justify-content: center;
-  padding-bottom: 2rem;
-
-  .key {
-    grid-column: span 2;
-    font-size: inherit;
-    border: none;
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  h1 {
+    width: 55%;
+    font-size: 3em;
+  }
+  .try-again {
     background-color: var(--key-color);
-    color: white;
-    fill: white;
-    text-transform: uppercase;
+    border: none;
     border-radius: 0.25em;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1em;
+    padding: 1em 2em;
     cursor: pointer;
     user-select: none;
   }
-  .key-enter,
-  .key-exit {
-    grid-column: span 3;
-    font-size: inherit;
-    border: none;
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--key-color);
-    color: white;
-    fill: white;
-    text-transform: uppercase;
-    border-radius: 0.25em;
-    cursor: pointer;
-    user-select: none;
-
-    & > svg {
-      width: 1.5em;
-      height: 1.5em;
-      pointer-events: none;
-    }
-  }
-  .absent {
-    background-color: var(--absent-color);
-  }
-  .present {
-    background-color: var(--present-color);
-  }
-  .correct {
-    background-color: var(--correct-color);
-  }
 }
 
-.lost {
-  position: absolute;
-  z-index: 1;
-  height: 100vh;
-  width: 100vw;
-  background-color: #000000dc;
-  opacity: 1;
-  display: none;
-  justify-content: center;
-
-  .text {
-    width: 75%;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-
-    h1 {
-      color: white;
-      text-transform: uppercase;
-      margin-bottom: 0.5em;
-      font-size: 2rem;
-    }
-
-    .try-again {
-      border: none;
-      font-weight: bold;
-      font-size: 1.25em;
-      padding: 1em 2rem;
-      background-color: var(--key-color);
-      color: white;
-      fill: white;
-      text-transform: uppercase;
-      border-radius: 0.25em;
-      cursor: pointer;
-      user-select: none;
-    }
-  }
-}
-
-.lost.show {
+.endscreen.show {
   display: flex;
-}
-
-.win {
-  position: absolute;
-  z-index: 1;
-  height: 100vh;
-  width: 100vw;
-  background-color: #000000a3;
-  opacity: 0;
-  .text {
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-
-    h1 {
-      color: white;
-      text-transform: uppercase;
-      margin-bottom: 0.5em;
-      font-size: 2rem;
-    }
-
-    .try-again {
-      border: none;
-      font-weight: bold;
-      font-size: 1.25em;
-      padding: 1em 2rem;
-      background-color: var(--key-color);
-      color: white;
-      fill: white;
-      text-transform: uppercase;
-      border-radius: 0.25em;
-      cursor: pointer;
-      user-select: none;
-    }
-  }
 }

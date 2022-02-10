@@ -6,135 +6,137 @@ import * as dictArr from "./dictWords.js";
 const word = "apple";
 const WORD_LENGTH = 5;
 let userInput = "";
-const dictWords = ["apple", "mango"];
 let attempts = 1;
 
 function getActiveTiles() {
-  const containsActive = document.querySelectorAll(".active");
-  return containsActive.length;
+  return document.querySelectorAll(".active");
+}
+
+function showEndScreen(message) {
+  document.querySelector(".message").innerHTML = message;
+  document.querySelector(".endscreen").classList.add("show");
 }
 
 function pressKey(letter) {
-  const activeTiles = getActiveTiles();
-  if (activeTiles >= WORD_LENGTH) return;
+  const activeTile = getActiveTiles();
+  if (activeTile.length >= WORD_LENGTH) return;
   const notActive = document.querySelector(".tile:not(.used)");
   notActive.innerHTML = letter.toUpperCase();
   notActive.classList.add("active");
   notActive.classList.add("used");
-  userInput = userInput.concat(letter);
+  userInput = userInput.concat(letter.toLowerCase());
   return;
 }
 
-function deleteKey() {
-  const activeTiles = getActiveTiles();
-  if (activeTiles === 0) return;
-  const notActive = document.querySelectorAll(".active");
-  notActive[notActive.length - 1].innerHTML = "";
-  notActive[notActive.length - 1].classList.remove("active");
-  notActive[notActive.length - 1].classList.remove("used");
-  userInput = userInput.slice(0, -1);
-  return;
-}
-
+// Function runs when user presses Enter
 function submitGuess() {
   const activeTiles = getActiveTiles();
-  if (activeTiles !== 5) return;
+  if (activeTiles.length !== WORD_LENGTH) return;
   attempts++;
   // console.log(attempts);
-  const Active = document.querySelectorAll(".active");
   if (userInput === word) {
     // console.log("u win");
-    for (let elements of Active) {
+    for (let elements of activeTiles) {
       elements.classList.add("correct");
     }
-    // printWinner();
     removeInteraction();
+    showEndScreen("IMPRESSIVE");
+    // printWinner();
     return;
   }
-  // console.log(Active);
   console.log(userInput);
   for (let i = 0; i < userInput.length; i++) {
     if (word.includes(userInput[i])) {
-      // console.log("try agian", i);
-      // console.log(Active[i]);
-      Active[i].classList.add("present");
+      activeTiles[i].classList.add("present");
+      if (word[i] === userInput[i]) {
+        activeTiles[i].classList.add("correct");
+      }
     } else {
-      Active[i].classList.add("absent");
+      activeTiles[i].classList.add("absent");
     }
-  }
-  for (let i = 0; i < userInput.length; i++) {
-    if (word[i] === userInput[i]) {
-      // console.log("try agian", i);
-      Active[i].classList.add("correct");
-    }
-  }
-  for (let element of Active) {
-    element.classList.remove("active");
+    activeTiles[i].classList.remove("active");
   }
   userInput = "";
   return;
 }
 
-// function handleMouseClick(e) {
-//   if (e.target.classList.contains("key")) {
-//     presssKey(e.target.id);
-//     return;
-//   }
-//   if (e.target.classList.contains("key-enter")) {
-//     submitGuess();
-//     return;
-//   }
-//   if (e.target.classList.contains("key-exit")) {
-//     deleteKey();
-//     return;
-//   }
-//   //   console.log(e.target.id, e.target.classList.contains("key"));
-// }
+function deleteKey() {
+  const activeTiles = getActiveTiles();
+  const lastActiveTile = activeTiles[activeTiles.length - 1];
+  if (lastActiveTile == null) return;
+  lastActiveTile.classList.remove("active");
+  lastActiveTile.classList.remove("used");
+  lastActiveTile.innerHTML = "";
+  userInput = userInput.slice(0, -1);
+  return;
+}
 
-function handleKeyPress(e) {
-  // console.log(e);
-  if (attempts < 7) {
-    console.log(attempts);
-    if (e.key === "Enter") {
-      submitGuess();
-      return;
-    }
+function keyPress(e) {
+  if (attempts > 6) {
+    removeInteraction();
+    showEndScreen("BETTER LUCK NEXT TIME");
+    return;
+  }
+  console.log(e.key);
+  if (e.key === "Enter") {
+    submitGuess();
+    return;
+  } else if (e.key === "Backspace" || e.key === "Delete") {
+    deleteKey();
+    return;
+  } else if (e.key.match(/^[a-z]$/)) {
+    pressKey(e.key);
+    return;
+  }
+}
 
-    if (e.key === "Backspace" || e.key === "Delete") {
-      deleteKey();
-      return;
-    }
-    if (e.key.match(/^[a-z]$/)) {
-      pressKey(e.key);
-      return;
-    }
-  } else {
-    document.querySelector(".lost").classList.add("show");
+function mouseClick(e) {
+  if (attempts > 6) {
+    removeInteraction();
+    showEndScreen("BETTER LUCK NEXT TIME");
+    return;
+  }
+  let keyValue = e.target.id.toUpperCase();
+  console.log(keyValue);
+  if (keyValue === "ENTER") {
+    submitGuess();
+    return;
+  } else if (keyValue === "Backspace" || keyValue === "DELETE") {
+    deleteKey();
+    return;
+  } else if (keyValue.match(/^[A-Z]$/)) {
+    pressKey(keyValue);
     return;
   }
 }
 
 function startInteraction() {
-  //   document.addEventListener("click", handleMouseClick);
-  document.addEventListener("keydown", handleKeyPress);
-  return;
+  document.addEventListener("keydown", keyPress);
+  document.addEventListener("click", mouseClick);
 }
 
 function removeInteraction() {
-  document.removeEventListener("click", handleMouseClick);
-  document.removeEventListener("keydown", handleKeyPress);
+  //   document.removeEventListener("click", handleMouseClick);
+  document.removeEventListener("keydown", keyPress);
   return;
 }
 
-function playGame() {
-  if (attempts < 7) {
-    startInteraction();
-    console.log("overw12");
-  } else {
-    console.log("you lost");
-    removeInteraction();
-    return;
+startInteraction();
+
+function init() {
+  userInput = "";
+  attempts = 1;
+  document.querySelector(".endscreen").classList.remove("show");
+  const tiles = document.querySelectorAll(".tile");
+  for (let element of tiles) {
+    element.classList.remove("used");
+    element.classList.remove("present");
+    element.classList.remove("active");
+    element.classList.remove("absent");
+    element.classList.remove("correct");
+    element.innerHTML = "";
   }
+  startInteraction();
 }
 
-playGame();
+document.querySelector(".try-again").addEventListener("click", init);
